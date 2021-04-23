@@ -12,5 +12,7 @@ class OwnerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil
             .setContentView<ActivityOwnerBinding>(this, R.layout.activity_owner)
+
+        setSupportActionBar(binding.toolbar)
     }
 }

@@ -11,10 +11,7 @@ import com.project.ggyucoinproject.databinding.FragmentMainBinding
 
 class MainFragment: Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        setSupportActionBar(binding.toolbar)
-    }
+    private val mAdapter by lazy { MainAdapter(requireActivity()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,12 +27,14 @@ class MainFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val binding = DataBindingUtil.bind<FragmentMainBinding>(view) ?: return
 
+        binding.viewPager.adapter = mAdapter
+
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = "코인목록"
                 1 -> tab.text = "즐겨찾기(관심)"
                 else -> tab.text = "코인심볼설명"
             }
-        }
+        }.attach()
     }
 }

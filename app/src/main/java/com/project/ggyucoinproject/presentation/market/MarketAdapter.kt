@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.project.ggyucoinproject.databinding.ItemMarketBinding
+import com.project.ggyucoinproject.domain.CoinDomain
 import com.project.ggyucoinproject.domain.MarketDomain
 
 class MarketAdapter : RecyclerView.Adapter<MarketViewHolder>() {
 
-    private val mDomains: MutableList<MarketDomain> = mutableListOf()
+    private val mDomains: MutableList<CoinDomain> = mutableListOf()
 
-    fun addDomains(domains: List<MarketDomain>) {
+    fun addDomains(domains: List<CoinDomain>) {
         mDomains.clear()
         mDomains.addAll(domains)
         notifyDataSetChanged()

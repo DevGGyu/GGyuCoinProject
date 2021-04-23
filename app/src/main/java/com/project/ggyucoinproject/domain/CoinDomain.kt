@@ -2,6 +2,6 @@ package com.project.ggyucoinproject.domain
 
 data class CoinDomain(
     val name: String,
-    val tradePrice: Double,
-    val changePrice: Double,
+    val tradePrice: String,
+    val changePrice: String,
 )
