@@ -13,7 +13,7 @@ class SymbolFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentSymbolBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
