@@ -2,6 +2,7 @@ package com.project.ggyucoinproject.domain
 
 data class TickerMarketDomain(
     val market: String,
-    val tradePrice: Double,
-    val changePrice: Double,
+    val tradePrice: String,
+    val signedChangePrice: Double,
+    val signedChangeRate: Double,
 )

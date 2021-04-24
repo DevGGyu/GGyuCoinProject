@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.project.ggyucoinproject.databinding.FragmentMarketBinding
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -30,6 +31,12 @@ class MarketFragment : Fragment() {
 
         val adapter = MarketAdapter()
         binding.rvCoinList.adapter = adapter
+        binding.rvCoinList.addItemDecoration(
+            DividerItemDecoration(
+                requireContext(),
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
         mVM.domains.observe(viewLifecycleOwner) { domains ->
             adapter.addDomains(domains)

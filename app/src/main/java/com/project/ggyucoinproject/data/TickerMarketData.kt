@@ -31,13 +31,14 @@ data class TickerMarketData(
     @Json(name = "highest_52_week_date") val highest52WeekDate: String,
     @Json(name = "lowest_52_week_price") val lowest52WeekPrice: Double,
     @Json(name = "lowest_52_week_date") val lowest52WeekDate: String,
-    @Json(name = "timestamp") val timestamp: Int
+    @Json(name = "timestamp") val timestamp: Long
 ) {
     fun toDomainModel(): TickerMarketDomain {
         return TickerMarketDomain(
             market = this.market,
-            tradePrice = this.tradePrice,
-            changePrice = this.changePrice
+            tradePrice = this.tradePrice.toBigDecimal().toPlainString(),
+            signedChangePrice = this.signedChangePrice,
+            signedChangeRate = this.signedChangeRate * 100
         )
     }
 }

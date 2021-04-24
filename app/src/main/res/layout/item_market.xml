@@ -12,15 +12,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <ImageView
             android:id="@+id/symbol"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:adjustViewBounds="true"
-            app:symbol='@{"BTC"}' />
+            app:symbol='@{domain.market}' />
 
         <TextView
             android:layout_width="0dp"
@@ -37,7 +41,7 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif"
             android:gravity="center"
-            android:text="@{String.valueOf(domain.tradePrice)}"
+            android:text="@{domain.tradePrice}"
             android:textSize="14dp" />
 
         <TextView
@@ -46,7 +50,7 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif"
             android:gravity="center"
-            android:text="@{String.valueOf(domain.changePrice)}"
+            android:text="@{domain.signedChange}"
             android:textSize="14dp" />
     </LinearLayout>
 </layout>
