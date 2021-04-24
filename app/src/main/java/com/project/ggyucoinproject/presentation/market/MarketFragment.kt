@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.project.ggyucoinproject.databinding.FragmentMarketBinding
-import com.project.ggyucoinproject.domain.CoinDomain
-import kotlinx.coroutines.launch
+import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class MarketFragment : Fragment() {
+
+    private val mVM: OwnerViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,12 +31,7 @@ class MarketFragment : Fragment() {
         val adapter = MarketAdapter()
         binding.rvCoinList.adapter = adapter
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            val domains = mutableListOf<CoinDomain>()
-            repeat((1..100).count()) { num ->
-                val domain = CoinDomain("비트코인 $num", "57382000.0", "2580000.00000000")
-                domains.add(domain)
-            }
+        mVM.domains.observe(viewLifecycleOwner) { domains ->
             adapter.addDomains(domains)
         }
     }

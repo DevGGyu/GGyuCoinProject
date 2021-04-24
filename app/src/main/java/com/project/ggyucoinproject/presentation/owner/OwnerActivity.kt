@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.project.ggyucoinproject.R
 import com.project.ggyucoinproject.databinding.ActivityOwnerBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class OwnerActivity : AppCompatActivity() {
+
+    private val mVM: OwnerViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,7 +19,6 @@ class OwnerActivity : AppCompatActivity() {
             .setContentView<ActivityOwnerBinding>(this, R.layout.activity_owner)
 
         setSupportActionBar(binding.toolbar)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

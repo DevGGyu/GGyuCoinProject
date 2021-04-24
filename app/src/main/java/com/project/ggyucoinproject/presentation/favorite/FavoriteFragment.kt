@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.project.ggyucoinproject.databinding.FragmentFavoriteBinding
-import com.project.ggyucoinproject.domain.CoinDomain
 import com.project.ggyucoinproject.presentation.market.MarketAdapter
-import kotlinx.coroutines.launch
+import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class FavoriteFragment : Fragment() {
+
+    private val mVM: OwnerViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,12 +32,7 @@ class FavoriteFragment : Fragment() {
         val adapter = MarketAdapter()
         binding.rvFavoriteCoinList.adapter = adapter
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            val domains = mutableListOf<CoinDomain>()
-            repeat((1..20).count()) { num ->
-                val domain = CoinDomain("즐겨찾기코인 $num", "57382000.0", "2580000.00000000")
-                domains.add(domain)
-            }
+        mVM.domains.observe(viewLifecycleOwner) { domains ->
             adapter.addDomains(domains)
         }
     }
