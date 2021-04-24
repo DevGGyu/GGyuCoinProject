@@ -23,7 +23,8 @@ class SymbolAdapter : RecyclerView.Adapter<SymbolViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: SymbolViewHolder, position: Int) {
-        holder.onBind()
+        val domain = mDomains[position]
+        holder.onBind(domain)
     }
 
     override fun getItemCount(): Int = mDomains.size

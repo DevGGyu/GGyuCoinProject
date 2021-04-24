@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.project.ggyucoinproject.databinding.FragmentSymbolBinding
-import com.project.ggyucoinproject.domain.MarketDomain
-import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SymbolFragment : Fragment() {
+
+    private val mVM: SymbolViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,12 +30,7 @@ class SymbolFragment : Fragment() {
         val adapter = SymbolAdapter()
         binding.rvSymbolInfo.adapter = adapter
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            val domains = mutableListOf<MarketDomain>()
-            repeat((1..100).count()) { num ->
-                val domain = MarketDomain("KRW-BTC $num", "비트코인", "Bitcoin")
-                domains.add(domain)
-            }
+        mVM.marketAll.observe(viewLifecycleOwner) { domains ->
             adapter.addDomains(domains)
         }
     }

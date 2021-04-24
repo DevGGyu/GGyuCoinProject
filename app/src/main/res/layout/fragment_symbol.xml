@@ -17,9 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            tools:listitem="@layout/item_symbol"
-            tools:itemCount="20"
+            android:clipToPadding="false"
+            android:padding="16dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager" />
+            tools:itemCount="20"
+            tools:listitem="@layout/item_symbol" />
     </LinearLayout>
 </layout>
