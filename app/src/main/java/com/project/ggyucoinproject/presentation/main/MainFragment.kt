@@ -8,8 +8,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.project.ggyucoinproject.databinding.FragmentMainBinding
+import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class MainFragment: Fragment() {
+class MainFragment : Fragment() {
+
+    private val mVM: OwnerViewModel by sharedViewModel()
 
     private val mAdapter by lazy { MainAdapter(requireActivity()) }
 
@@ -20,6 +24,7 @@ class MainFragment: Fragment() {
     ): View {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
+        binding.vm = mVM
         return binding.root
     }
 

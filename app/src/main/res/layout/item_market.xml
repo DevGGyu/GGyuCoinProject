@@ -50,7 +50,7 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif"
             android:gravity="center"
-            android:text="@{domain.signedChange}"
+            android:text="@{domain.changePrice}"
             android:textSize="14dp" />
     </LinearLayout>
 </layout>

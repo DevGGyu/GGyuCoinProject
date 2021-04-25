@@ -37,8 +37,8 @@ data class TickerMarketData(
         return TickerMarketDomain(
             market = this.market,
             tradePrice = this.tradePrice.toBigDecimal().toPlainString(),
-            signedChangePrice = this.signedChangePrice,
-            signedChangeRate = this.signedChangeRate * 100
+            signedChangePrice = this.signedChangePrice.toBigDecimal().toPlainString(),
+            signedChangeRate = "%.2f".format(this.signedChangeRate * 100) + "%"
         )
     }
 }
