@@ -12,7 +12,7 @@ class SymbolRepository constructor(private val service: MarketService) {
     suspend fun getMarketAll() {
         service.getMarketAll().apply {
             val data = this.distinctBy(MarketData::koreanName).toList()
-            val domains = data.map(MarketData::toDomainList)
+            val domains = data.map(MarketData::toDomainModel)
             marketAll.postValue(domains)
         }
     }

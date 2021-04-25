@@ -28,7 +28,7 @@ class OwnerRepository constructor(private val service: MarketService) {
     }
 
     suspend fun getMarketAll(): List<MarketDomain> {
-        return service.getMarketAll().map(MarketData::toDomainList)
+        return service.getMarketAll().map(MarketData::toDomainModel)
     }
 
     suspend fun getTickerMarket(marketList: List<MarketDomain>) {

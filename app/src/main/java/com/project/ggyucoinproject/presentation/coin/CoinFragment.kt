@@ -10,10 +10,12 @@ import androidx.navigation.fragment.navArgs
 import com.project.ggyucoinproject.databinding.FragmentCoinBinding
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CoinFragment : Fragment() {
 
-    private val mVM: OwnerViewModel by sharedViewModel()
+    private val mSharedVM: OwnerViewModel by sharedViewModel()
+    private val mVM: CoinViewModel by viewModel()
 
     private val mSafeArgs: CoinFragmentArgs by navArgs()
 
@@ -24,22 +26,20 @@ class CoinFragment : Fragment() {
     ): View {
         val binding = FragmentCoinBinding.inflate(inflater)
         binding.lifecycleOwner = this
+        binding.viewModel = mVM
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = DataBindingUtil.bind<FragmentCoinBinding>(view) ?: return
-
         val market = mSafeArgs.market
 
-        mVM.domains.observe(viewLifecycleOwner) { domains ->
+        mSharedVM.domains.observe(viewLifecycleOwner) { domains ->
             val coin = domains.find { it.market == market }
             binding.coin = coin
-        }
 
-        binding.cbFavorite.setOnCheckedChangeListener { buttonView, isChecked ->
-
+            mVM.getFavorite(market)
         }
     }
 }

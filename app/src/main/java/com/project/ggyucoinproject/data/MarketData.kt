@@ -10,7 +10,7 @@ data class MarketData(
     @Json(name = "korean_name") val koreanName: String,
     @Json(name = "english_name") val englishName: String,
 ) {
-    fun toDomainList(): MarketDomain {
+    fun toDomainModel(): MarketDomain {
         return MarketDomain(
             market = this.market,
             koreanName = this.koreanName,

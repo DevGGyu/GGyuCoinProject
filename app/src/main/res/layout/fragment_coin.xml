@@ -8,6 +8,10 @@
         <variable
             name="coin"
             type="com.project.ggyucoinproject.domain.CoinDomain" />
+
+        <variable
+            name="viewModel"
+            type="com.project.ggyucoinproject.presentation.coin.CoinViewModel" />
     </data>
 
     <LinearLayout
@@ -35,7 +39,10 @@
                 android:layout_height="30dp"
                 android:layout_gravity="end|bottom"
                 android:background="@drawable/cb_favorite"
-                android:button="@null" />
+                android:button="@null"
+                android:checked="@{viewModel.favorite}"
+                android:onCheckedChanged="@{viewModel.favoriteChanged}"
+                android:tag="@{coin.market}" />
         </FrameLayout>
 
         <TextView
