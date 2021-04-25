@@ -19,11 +19,6 @@ class CoinFragment : Fragment() {
 
     private val mSafeArgs: CoinFragmentArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(false)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,6 +27,7 @@ class CoinFragment : Fragment() {
         val binding = FragmentCoinBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = mVM
+        binding.ownerViewModel = mSharedVM
         return binding.root
     }
 

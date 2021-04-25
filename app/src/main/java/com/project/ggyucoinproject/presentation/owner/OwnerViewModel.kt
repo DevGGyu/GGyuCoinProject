@@ -15,7 +15,7 @@ class OwnerViewModel constructor(private val repository: OwnerRepository) : View
 
     val query = MutableLiveData<String>()
 
-    val bitcoin: LiveData<CoinDomain> = Transformations.map(domains) { coins ->
+    val bitcoin: LiveData<CoinDomain> = Transformations.map(repository.domains) { coins ->
         coins.find { it.market == "KRW-BTC" }
     }
 
