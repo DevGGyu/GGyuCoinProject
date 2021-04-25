@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.project.ggyucoinproject.databinding.FragmentFavoriteBinding
+import com.project.ggyucoinproject.presentation.main.MainFragmentDirections
 import com.project.ggyucoinproject.presentation.market.MarketAdapter
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -37,7 +39,8 @@ class FavoriteFragment : Fragment(), MarketAdapter.SelectCoinListener {
         }
     }
 
-    override fun onCoin() {
-
+    override fun onCoin(market: String) {
+        val action = MainFragmentDirections.actionMainFragmentToCoinFragment(market)
+        findNavController().navigate(action)
     }
 }

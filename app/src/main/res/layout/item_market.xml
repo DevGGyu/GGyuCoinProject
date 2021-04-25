@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="center"
-        android:onClick="@{() -> listener.onCoin()}"
+        android:onClick="@{() -> listener.onCoin(domain.market)}"
         android:orientation="horizontal"
         android:padding="8dp"
         android:paddingStart="16dp"

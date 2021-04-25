@@ -35,5 +35,11 @@
         android:id="@+id/coinFragment"
         android:name="com.project.ggyucoinproject.presentation.coin.CoinFragment"
         android:label="Coin"
-        tools:layout="@layout/fragment_coin" />
+        tools:layout="@layout/fragment_coin">
+        <argument
+            android:name="market"
+            android:defaultValue="null"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

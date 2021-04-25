@@ -9,7 +9,7 @@ import com.project.ggyucoinproject.domain.CoinDomain
 class MarketAdapter(private val listener: SelectCoinListener) : RecyclerView.Adapter<MarketViewHolder>() {
 
     interface SelectCoinListener {
-        fun onCoin()
+        fun onCoin(market: String)
     }
 
     private val mDomains: MutableList<CoinDomain> = mutableListOf()

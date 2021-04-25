@@ -8,8 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.project.ggyucoinproject.R
 import com.project.ggyucoinproject.databinding.FragmentMarketBinding
+import com.project.ggyucoinproject.presentation.main.MainFragmentDirections
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -45,7 +45,8 @@ class MarketFragment : Fragment(), MarketAdapter.SelectCoinListener {
         }
     }
 
-    override fun onCoin() {
-        findNavController().navigate(R.id.action_mainFragment_to_coinFragment)
+    override fun onCoin(market: String) {
+        val action = MainFragmentDirections.actionMainFragmentToCoinFragment(market)
+        findNavController().navigate(action)
     }
 }

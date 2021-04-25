@@ -8,8 +8,8 @@ object CommonBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("symbol")
-    fun setSymbol(view: ImageView, market: String) {
-        val name = market.substringAfterLast("-")
+    fun setSymbol(view: ImageView, market: String?) {
+        val name = market?.substringAfterLast("-")
         Glide.with(view.context)
             .load("https://static.upbit.com/logos/${name}.png")
             .into(view)
