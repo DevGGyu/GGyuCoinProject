@@ -3,6 +3,8 @@ package com.project.ggyucoinproject.data
 import com.project.ggyucoinproject.domain.TickerMarketDomain
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.text.NumberFormat
+import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class TickerMarketData(
@@ -36,9 +38,16 @@ data class TickerMarketData(
     fun toDomainModel(): TickerMarketDomain {
         return TickerMarketDomain(
             market = this.market,
-            tradePrice = this.tradePrice.toBigDecimal().toPlainString(),
-            signedChangePrice = this.signedChangePrice.toBigDecimal().toPlainString(),
+            tradePrice = this.tradePrice.toBigDecimal().toPlainString().toComma(),
+            signedChangePrice = this.signedChangePrice.toBigDecimal().toPlainString().toComma(),
             signedChangeRate = "%.2f".format(this.signedChangeRate * 100) + "%"
         )
+    }
+
+    private fun String.toComma(): String {
+        val fmt = NumberFormat.getNumberInstance(Locale.getDefault())
+        val sp = this.split(".")
+        val format = fmt.format(Integer.parseInt(sp[0]))
+        return if (!this.contains(".")) format else this.replaceBefore(".", format)
     }
 }
