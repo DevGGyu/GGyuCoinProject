@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.project.ggyucoinproject.databinding.FragmentCoinBinding
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
@@ -21,6 +18,11 @@ class CoinFragment : Fragment() {
     private val mVM: CoinViewModel by viewModel()
 
     private val mSafeArgs: CoinFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(false)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -23,7 +23,7 @@ class OwnerRepository constructor(private val service: MarketService) {
                 val ticker = async { getTickerMarket(marketAll.await()) }
                 ticker.await()
             }
-            delay(5000)
+            delay(1000)
         }
     }
 

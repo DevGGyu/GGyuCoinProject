@@ -1,15 +1,19 @@
 package com.project.ggyucoinproject.presentation.owner
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.project.ggyucoinproject.domain.CoinDomain
 import kotlinx.coroutines.launch
+import java.util.*
 
 class OwnerViewModel constructor(private val repository: OwnerRepository) : ViewModel() {
 
-    val domains: LiveData<List<CoinDomain>> = repository.domains
+    val domains: LiveData<List<CoinDomain>> = Transformations.map(repository.domains) { coins ->
+        val filter = query.value
+        if (filter.isNullOrEmpty()) coins
+        else coins.filter { it.market.contains(filter.toUpperCase(Locale.getDefault())) }
+    }
+
+    val query = MutableLiveData<String>()
 
     val bitcoin: LiveData<CoinDomain> = Transformations.map(domains) { coins ->
         coins.find { it.market == "KRW-BTC" }

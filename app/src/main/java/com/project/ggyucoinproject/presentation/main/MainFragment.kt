@@ -1,12 +1,12 @@
 package com.project.ggyucoinproject.presentation.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
+import com.project.ggyucoinproject.R
 import com.project.ggyucoinproject.databinding.FragmentMainBinding
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -14,6 +14,11 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class MainFragment : Fragment() {
 
     private val mSharedVM: OwnerViewModel by sharedViewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,5 +44,22 @@ class MainFragment : Fragment() {
                 else -> tab.text = "코인심볼설명"
             }
         }.attach()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu, menu)
+        val sv = menu.findItem(R.id.coin_search).actionView as SearchView
+        sv.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener,
+            SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                mSharedVM.query.postValue(newText)
+                return true
+            }
+        })
     }
 }
