@@ -6,16 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.project.ggyucoinproject.databinding.FragmentFavoriteBinding
 import com.project.ggyucoinproject.presentation.main.MainFragmentDirections
 import com.project.ggyucoinproject.presentation.market.MarketAdapter
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : Fragment(), MarketAdapter.SelectCoinListener {
 
-    private val mVM: OwnerViewModel by sharedViewModel()
+    private val mSharedVM: OwnerViewModel by sharedViewModel()
+    private val mVM: FavoriteViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,10 +38,21 @@ class FavoriteFragment : Fragment(), MarketAdapter.SelectCoinListener {
         val adapter = MarketAdapter(this)
         binding.rvFavoriteCoinList.adapter = adapter
 
-        mVM.domains.observe(viewLifecycleOwner) { domains ->
-            adapter.addDomains(domains)
+        mVM.favorites.observe(viewLifecycleOwner) { favoriteMarkets ->
+            mSharedVM.domains.observe(viewLifecycleOwner) { domains ->
+                viewLifecycleOwner.lifecycleScope.launch {
+                    val favorites = domains.filter {
+                        favoriteMarkets.contains(it.market)
+                    }.toList()
+                    adapter.addDomains(favorites)
+                }
+            }
         }
+
+        mVM.getFavorites()
     }
+
+    fun reload() = mVM.getFavorites()
 
     override fun onCoin(market: String) {
         val action = MainFragmentDirections.actionMainFragmentToCoinFragment(market)

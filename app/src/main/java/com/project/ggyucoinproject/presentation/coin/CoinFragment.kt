@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.project.ggyucoinproject.databinding.FragmentCoinBinding
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
@@ -38,6 +41,7 @@ class CoinFragment : Fragment() {
         mSharedVM.domains.observe(viewLifecycleOwner) { domains ->
             val coin = domains.find { it.market == market }
             binding.coin = coin
+            binding.cbFavorite.tag = coin?.market
 
             mVM.getFavorite(market)
         }

@@ -6,18 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.project.ggyucoinproject.R
 import com.project.ggyucoinproject.databinding.FragmentSplashBinding
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SplashFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val mVM: OwnerViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,8 +28,7 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewLifecycleOwner.lifecycleScope.launch {
-            delay(1500)
+        mVM.domains.observe(viewLifecycleOwner) {
             findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
         }
     }

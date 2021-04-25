@@ -13,7 +13,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class MainFragment : Fragment() {
 
-    private val mVM: OwnerViewModel by sharedViewModel()
+    private val mSharedVM: OwnerViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +22,7 @@ class MainFragment : Fragment() {
     ): View {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        binding.vm = mVM
+        binding.vm = mSharedVM
         return binding.root
     }
 
