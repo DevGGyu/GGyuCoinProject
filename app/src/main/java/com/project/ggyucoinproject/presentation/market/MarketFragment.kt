@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.project.ggyucoinproject.R
 import com.project.ggyucoinproject.databinding.FragmentMarketBinding
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class MarketFragment : Fragment() {
+class MarketFragment : Fragment(), MarketAdapter.SelectCoinListener {
 
     private val mVM: OwnerViewModel by sharedViewModel()
 
@@ -29,7 +31,7 @@ class MarketFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val binding = DataBindingUtil.bind<FragmentMarketBinding>(view) ?: return
 
-        val adapter = MarketAdapter()
+        val adapter = MarketAdapter(this)
         binding.rvCoinList.adapter = adapter
         binding.rvCoinList.addItemDecoration(
             DividerItemDecoration(
@@ -41,5 +43,9 @@ class MarketFragment : Fragment() {
         mVM.domains.observe(viewLifecycleOwner) { domains ->
             adapter.addDomains(domains)
         }
+    }
+
+    override fun onCoin() {
+        findNavController().navigate(R.id.action_mainFragment_to_coinFragment)
     }
 }

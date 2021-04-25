@@ -5,9 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.project.ggyucoinproject.databinding.ItemMarketBinding
 import com.project.ggyucoinproject.domain.CoinDomain
-import com.project.ggyucoinproject.domain.MarketDomain
 
-class MarketAdapter : RecyclerView.Adapter<MarketViewHolder>() {
+class MarketAdapter(private val listener: SelectCoinListener) : RecyclerView.Adapter<MarketViewHolder>() {
+
+    interface SelectCoinListener {
+        fun onCoin()
+    }
 
     private val mDomains: MutableList<CoinDomain> = mutableListOf()
 
@@ -25,7 +28,7 @@ class MarketAdapter : RecyclerView.Adapter<MarketViewHolder>() {
 
     override fun onBindViewHolder(holder: MarketViewHolder, position: Int) {
         val domain = mDomains[position]
-        holder.onBind(domain)
+        holder.onBind(domain, listener)
     }
 
     override fun getItemCount(): Int = mDomains.size

@@ -11,7 +11,7 @@ import com.project.ggyucoinproject.presentation.market.MarketAdapter
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : Fragment(), MarketAdapter.SelectCoinListener {
 
     private val mVM: OwnerViewModel by sharedViewModel()
 
@@ -29,11 +29,15 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val binding = DataBindingUtil.bind<FragmentFavoriteBinding>(view) ?: return
 
-        val adapter = MarketAdapter()
+        val adapter = MarketAdapter(this)
         binding.rvFavoriteCoinList.adapter = adapter
 
         mVM.domains.observe(viewLifecycleOwner) { domains ->
             adapter.addDomains(domains)
         }
+    }
+
+    override fun onCoin() {
+
     }
 }

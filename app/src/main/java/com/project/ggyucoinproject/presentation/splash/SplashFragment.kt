@@ -15,6 +15,10 @@ import kotlinx.coroutines.launch
 
 class SplashFragment : Fragment() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,11 +39,11 @@ class SplashFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (requireActivity() as AppCompatActivity).supportActionBar?.apply { this.hide() }
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
     }
 
     override fun onStop() {
         super.onStop()
-        (requireActivity() as AppCompatActivity).supportActionBar?.apply { this.show() }
+        (requireActivity() as AppCompatActivity).supportActionBar?.show()
     }
 }

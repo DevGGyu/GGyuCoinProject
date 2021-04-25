@@ -15,8 +15,6 @@ class MainFragment : Fragment() {
 
     private val mVM: OwnerViewModel by sharedViewModel()
 
-    private val mAdapter by lazy { MainAdapter(requireActivity()) }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +30,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val binding = DataBindingUtil.bind<FragmentMainBinding>(view) ?: return
 
-        binding.viewPager.adapter = mAdapter
+        binding.viewPager.adapter = MainAdapter(requireActivity())
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {

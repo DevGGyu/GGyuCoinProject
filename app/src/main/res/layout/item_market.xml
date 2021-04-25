@@ -7,6 +7,10 @@
         <variable
             name="domain"
             type="com.project.ggyucoinproject.domain.CoinDomain" />
+
+        <variable
+            name="listener"
+            type="com.project.ggyucoinproject.presentation.market.MarketAdapter.SelectCoinListener" />
     </data>
 
     <LinearLayout
@@ -14,6 +18,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="center"
+        android:onClick="@{() -> listener.onCoin()}"
         android:orientation="horizontal"
         android:padding="8dp"
         android:paddingStart="16dp"
