@@ -1,6 +1,7 @@
 package com.project.ggyucoinproject.presentation.owner
 
 import androidx.lifecycle.MutableLiveData
+import com.project.ggyucoinproject.BuildConfig
 import com.project.ggyucoinproject.data.MarketData
 import com.project.ggyucoinproject.data.TickerMarketData
 import com.project.ggyucoinproject.domain.CoinDomain
@@ -23,7 +24,8 @@ class OwnerRepository constructor(private val service: MarketService) {
                 val ticker = async { getTickerMarket(marketAll.await()) }
                 ticker.await()
             }
-            delay(1000)
+            val timeMillis = if (!BuildConfig.DEBUG) 1000L else 10000L
+            delay(timeMillis = timeMillis)
         }
     }
 
