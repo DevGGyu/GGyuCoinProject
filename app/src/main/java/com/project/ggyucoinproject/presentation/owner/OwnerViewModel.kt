@@ -20,10 +20,6 @@ class OwnerViewModel constructor(private val repository: OwnerRepository) : View
     }
 
     init {
-        loadMarketInfo()
-    }
-
-    private fun loadMarketInfo() {
         viewModelScope.launch {
             repository.getCoinList()
         }

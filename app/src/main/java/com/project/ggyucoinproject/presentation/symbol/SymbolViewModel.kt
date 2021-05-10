@@ -9,10 +9,6 @@ class SymbolViewModel constructor(private val repository: SymbolRepository) : Vi
     val marketAll = repository.marketAll
 
     init {
-        getMarketAll()
-    }
-
-    private fun getMarketAll() {
         viewModelScope.launch {
             repository.getMarketAll()
         }
