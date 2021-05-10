@@ -13,7 +13,7 @@ interface FavoriteDao {
     suspend fun get(market: String?): FavoriteEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg favorite: FavoriteEntity)
+    suspend fun insertAll(vararg favorites: FavoriteEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(favorite: FavoriteEntity)

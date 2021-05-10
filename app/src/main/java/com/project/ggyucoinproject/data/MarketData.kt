@@ -1,6 +1,7 @@
 package com.project.ggyucoinproject.data
 
 import com.project.ggyucoinproject.domain.MarketDomain
+import com.project.ggyucoinproject.entity.MarketEntity
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -12,6 +13,14 @@ data class MarketData(
 ) {
     fun toDomainModel(): MarketDomain {
         return MarketDomain(
+            market = this.market,
+            koreanName = this.koreanName,
+            englishName = this.englishName
+        )
+    }
+
+    fun toEntityModel(): MarketEntity {
+        return MarketEntity(
             market = this.market,
             koreanName = this.koreanName,
             englishName = this.englishName

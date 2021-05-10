@@ -9,12 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.project.ggyucoinproject.R
 import com.project.ggyucoinproject.databinding.FragmentSplashBinding
-import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashFragment : Fragment() {
 
-    private val mVM: OwnerViewModel by sharedViewModel()
+    private val mVM: SplashViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +27,7 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mVM.domains.observe(viewLifecycleOwner) {
+        mVM.success.observe(viewLifecycleOwner) {
             findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
         }
     }

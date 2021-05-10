@@ -10,7 +10,7 @@ class OwnerViewModel constructor(private val repository: OwnerRepository) : View
     val domains: LiveData<List<CoinDomain>> = Transformations.map(repository.domains) { coins ->
         val filter = query.value
         if (filter.isNullOrEmpty()) coins
-        else coins.filter { it.market.contains(filter.toUpperCase(Locale.getDefault())) }
+        else coins.filter { it.market.contains(filter.uppercase(Locale.getDefault())) }
     }
 
     val query = MutableLiveData<String>()

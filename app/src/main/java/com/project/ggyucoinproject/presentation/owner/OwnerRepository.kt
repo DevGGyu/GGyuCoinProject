@@ -2,46 +2,55 @@ package com.project.ggyucoinproject.presentation.owner
 
 import androidx.lifecycle.MutableLiveData
 import com.project.ggyucoinproject.BuildConfig
-import com.project.ggyucoinproject.data.MarketData
 import com.project.ggyucoinproject.data.TickerMarketData
 import com.project.ggyucoinproject.domain.CoinDomain
-import com.project.ggyucoinproject.domain.MarketDomain
+import com.project.ggyucoinproject.entity.MarketEntity
 import com.project.ggyucoinproject.etc.api.MarketService
+import com.project.ggyucoinproject.etc.db.MainDatabase
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 
-class OwnerRepository constructor(private val service: MarketService) {
+class OwnerRepository(private val service: MarketService, private val mainDB: MainDatabase) {
 
     val domains = MutableLiveData<List<CoinDomain>>()
 
     suspend fun getCoinList() {
-        repeat(Int.MAX_VALUE) {
-            coroutineScope {
-                val marketAll = async { getMarketAll() }
-                val ticker = async { getTickerMarket(marketAll.await()) }
+        coroutineScope {
+            val marketAll = async { getMarketAll() }
+            val marketEntities = marketAll.await()
+
+            repeat(Int.MAX_VALUE) {
+                val ticker = async { getTickerMarket(marketEntities) }
                 ticker.await()
+                val timeMillis = if (BuildConfig.DEBUG) 1000L else 10000L
+                delay(timeMillis = timeMillis)
             }
-            val timeMillis = if (!BuildConfig.DEBUG) 1000L else 10000L
-            delay(timeMillis = timeMillis)
         }
     }
 
-    private suspend fun getMarketAll(): List<MarketDomain> {
-        return service.getMarketAll().map(MarketData::toDomainModel)
-    }
+    private suspend fun getMarketAll(): List<MarketEntity> = mainDB.marketDao().getAll()
 
-    private suspend fun getTickerMarket(marketList: List<MarketDomain>) {
-        val coins = mutableListOf<CoinDomain>()
-        val markets = marketList.map { it.market }.toList()
-        val tickerMarketDomains = service.getTickerMarket(markets)
-            .map(TickerMarketData::toDomainModel)
-        marketList.zip(tickerMarketDomains).asFlow().collect { data ->
-            val coin = CoinDomain(data.first, data.second)
-            coins.add(coin)
+    private suspend fun getTickerMarket(entities: List<MarketEntity>) {
+        coroutineScope {
+            val ticker = async {
+                val coins = mutableListOf<CoinDomain>()
+
+                val markets = entities.map(MarketEntity::market).toList()
+
+                val tickerMarketDomains = service.getTickerMarket(markets).body()
+                    ?.map(TickerMarketData::toDomainModel) ?: return@async
+
+                entities.zip(tickerMarketDomains).asFlow().collect { data ->
+                    val coin = CoinDomain(data.first, data.second)
+                    coins.add(coin)
+                }
+
+                domains.postValue(coins)
+            }
+            ticker.await()
         }
-        domains.postValue(coins)
     }
 }

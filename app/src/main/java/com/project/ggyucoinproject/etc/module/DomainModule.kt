@@ -62,5 +62,6 @@ private fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
 private fun provideDatabase(context: Context): MainDatabase {
     return Room
         .databaseBuilder(context, MainDatabase::class.java, "market-db")
+        .fallbackToDestructiveMigration()
         .build()
 }

@@ -8,7 +8,7 @@ class FavoriteRepository constructor(private val db: MainDatabase) {
     val favorites = MutableLiveData<List<String>>()
 
     suspend fun getFavorites() {
-        val favoriteMarkets = db.marketDao().getAll().map { it.market }.toList()
+        val favoriteMarkets = db.favoriteDao().getAll().map { it.market }.toList()
         favorites.postValue(favoriteMarkets)
     }
 }
