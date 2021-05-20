@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.project.ggyucoinproject.databinding.FragmentSymbolBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SymbolFragment : Fragment() {
 
-    private val mVM: SymbolViewModel by viewModel()
+    private val mVM: SymbolViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

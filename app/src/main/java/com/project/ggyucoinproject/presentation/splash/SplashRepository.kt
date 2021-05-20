@@ -6,8 +6,14 @@ import com.project.ggyucoinproject.etc.api.MarketService
 import com.project.ggyucoinproject.etc.db.MainDatabase
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class SplashRepository(private val service: MarketService, private val mainDB: MainDatabase) {
+@Singleton
+class SplashRepository @Inject constructor(
+    private val service: MarketService,
+    private val mainDB: MainDatabase
+) {
 
     val success = MutableLiveData<Unit>()
 

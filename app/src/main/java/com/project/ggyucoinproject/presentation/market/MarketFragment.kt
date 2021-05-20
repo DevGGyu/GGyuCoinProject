@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.project.ggyucoinproject.databinding.FragmentMarketBinding
 import com.project.ggyucoinproject.presentation.main.MainFragmentDirections
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MarketFragment : Fragment(), MarketAdapter.SelectCoinListener {
 
-    private val mVM: OwnerViewModel by sharedViewModel()
+    private val mVM: OwnerViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

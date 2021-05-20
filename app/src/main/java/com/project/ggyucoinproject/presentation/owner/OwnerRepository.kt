@@ -12,8 +12,14 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class OwnerRepository(private val service: MarketService, private val mainDB: MainDatabase) {
+@Singleton
+class OwnerRepository @Inject constructor(
+    private val service: MarketService,
+    private val mainDB: MainDatabase
+) {
 
     val domains = MutableLiveData<List<CoinDomain>>()
 

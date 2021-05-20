@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.project.ggyucoinproject.databinding.ItemMarketBinding
 import com.project.ggyucoinproject.domain.CoinDomain
 
-class MarketAdapter(private val listener: SelectCoinListener) : RecyclerView.Adapter<MarketViewHolder>() {
+class MarketAdapter(private val listener: SelectCoinListener) :
+    RecyclerView.Adapter<MarketViewHolder>() {
 
     interface SelectCoinListener {
         fun onCoin(market: String)

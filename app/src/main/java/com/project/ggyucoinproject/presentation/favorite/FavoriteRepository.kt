@@ -2,8 +2,11 @@ package com.project.ggyucoinproject.presentation.favorite
 
 import androidx.lifecycle.MutableLiveData
 import com.project.ggyucoinproject.etc.db.MainDatabase
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class FavoriteRepository constructor(private val db: MainDatabase) {
+@Singleton
+class FavoriteRepository @Inject constructor(private val db: MainDatabase) {
 
     val favorites = MutableLiveData<List<String>>()
 

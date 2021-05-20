@@ -8,7 +8,7 @@ import com.project.ggyucoinproject.presentation.favorite.FavoriteFragment
 import com.project.ggyucoinproject.presentation.market.MarketFragment
 import com.project.ggyucoinproject.presentation.symbol.SymbolFragment
 
-class MainAdapter(val fa: FragmentActivity) : FragmentStateAdapter(fa) {
+class MainAdapter(private val fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
     private val arrScreen = arrayOf(MarketFragment(), FavoriteFragment(), SymbolFragment())
 

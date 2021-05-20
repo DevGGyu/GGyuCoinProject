@@ -5,15 +5,17 @@ import android.view.*
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.project.ggyucoinproject.R
 import com.project.ggyucoinproject.databinding.FragmentMainBinding
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private val mSharedVM: OwnerViewModel by sharedViewModel()
+    private val mSharedVM: OwnerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

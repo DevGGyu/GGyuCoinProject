@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.project.ggyucoinproject.R
 import com.project.ggyucoinproject.databinding.FragmentSplashBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashFragment : Fragment() {
 
-    private val mVM: SplashViewModel by viewModel()
+    private val mVM: SplashViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

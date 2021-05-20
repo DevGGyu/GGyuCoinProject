@@ -4,8 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import com.project.ggyucoinproject.data.MarketData
 import com.project.ggyucoinproject.domain.MarketDomain
 import com.project.ggyucoinproject.etc.api.MarketService
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class SymbolRepository constructor(private val service: MarketService) {
+@Singleton
+class SymbolRepository @Inject constructor(private val service: MarketService) {
 
     val marketAll = MutableLiveData<List<MarketDomain>>()
 

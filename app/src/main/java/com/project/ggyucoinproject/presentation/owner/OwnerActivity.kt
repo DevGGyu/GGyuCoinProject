@@ -8,11 +8,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.project.ggyucoinproject.R
 import com.project.ggyucoinproject.databinding.ActivityOwnerBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OwnerActivity : AppCompatActivity() {
-
-    private val mVM: OwnerViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -6,20 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.project.ggyucoinproject.databinding.FragmentFavoriteBinding
 import com.project.ggyucoinproject.presentation.main.MainFragmentDirections
 import com.project.ggyucoinproject.presentation.market.MarketAdapter
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class FavoriteFragment : Fragment(), MarketAdapter.SelectCoinListener {
 
-    private val mSharedVM: OwnerViewModel by sharedViewModel()
-    private val mVM: FavoriteViewModel by viewModel()
+    private val mSharedVM: OwnerViewModel by viewModels()
+    private val mVM: FavoriteViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

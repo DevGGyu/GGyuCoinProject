@@ -4,8 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import com.project.ggyucoinproject.entity.FavoriteEntity
 import com.project.ggyucoinproject.etc.db.MainDatabase
 import kotlinx.coroutines.coroutineScope
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class CoinRepository(private val db: MainDatabase) {
+@Singleton
+class CoinRepository @Inject constructor(private val db: MainDatabase) {
 
     val favorite = MutableLiveData<Boolean>()
 

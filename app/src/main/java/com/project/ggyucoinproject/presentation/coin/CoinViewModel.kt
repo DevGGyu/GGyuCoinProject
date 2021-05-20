@@ -4,9 +4,12 @@ import android.widget.CompoundButton
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.project.ggyucoinproject.entity.FavoriteEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CoinViewModel constructor(private val repository: CoinRepository) : ViewModel() {
+@HiltViewModel
+class CoinViewModel @Inject constructor(private val repository: CoinRepository) : ViewModel() {
 
     val favorite = repository.favorite
 

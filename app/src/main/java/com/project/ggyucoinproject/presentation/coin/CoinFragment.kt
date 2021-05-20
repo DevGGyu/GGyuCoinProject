@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.project.ggyucoinproject.databinding.FragmentCoinBinding
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CoinFragment : Fragment() {
 
-    private val mSharedVM: OwnerViewModel by sharedViewModel()
-    private val mVM: CoinViewModel by viewModel()
+    private val mSharedVM: OwnerViewModel by viewModels()
+    private val mVM: CoinViewModel by viewModels()
 
     private val mSafeArgs: CoinFragmentArgs by navArgs()
 
