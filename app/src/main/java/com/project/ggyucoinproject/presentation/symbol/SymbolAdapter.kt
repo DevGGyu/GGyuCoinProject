@@ -8,11 +8,11 @@ import com.project.ggyucoinproject.domain.MarketDomain
 
 class SymbolAdapter : RecyclerView.Adapter<SymbolViewHolder>() {
 
-    private val mDomains: MutableList<MarketDomain> = mutableListOf()
+    private val domainList: MutableList<MarketDomain> = mutableListOf()
 
     fun addDomains(domains: List<MarketDomain>) {
-        mDomains.clear()
-        mDomains.addAll(domains)
+        domainList.clear()
+        domainList.addAll(domains)
         notifyDataSetChanged()
     }
 
@@ -23,9 +23,9 @@ class SymbolAdapter : RecyclerView.Adapter<SymbolViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: SymbolViewHolder, position: Int) {
-        val domain = mDomains[position]
+        val domain = domainList[position]
         holder.onBind(domain)
     }
 
-    override fun getItemCount(): Int = mDomains.size
+    override fun getItemCount(): Int = domainList.size
 }

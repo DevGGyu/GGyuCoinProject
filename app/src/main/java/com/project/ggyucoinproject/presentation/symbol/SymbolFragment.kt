@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SymbolFragment : Fragment() {
 
-    private val mVM: SymbolViewModel by viewModels()
+    private val viewModel: SymbolViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +32,7 @@ class SymbolFragment : Fragment() {
         val adapter = SymbolAdapter()
         binding.rvSymbolInfo.adapter = adapter
 
-        mVM.marketAll.observe(viewLifecycleOwner) { domains ->
+        viewModel.marketAll.observe(viewLifecycleOwner) { domains ->
             adapter.addDomains(domains)
         }
     }

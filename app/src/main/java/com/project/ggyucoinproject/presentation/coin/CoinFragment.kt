@@ -15,10 +15,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CoinFragment : Fragment() {
 
-    private val mSharedVM: OwnerViewModel by viewModels()
-    private val mVM: CoinViewModel by viewModels()
+    private val sharedViewModel: OwnerViewModel by viewModels()
+    private val viewModel: CoinViewModel by viewModels()
 
-    private val mSafeArgs: CoinFragmentArgs by navArgs()
+    private val safeArgs: CoinFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,22 +27,22 @@ class CoinFragment : Fragment() {
     ): View {
         val binding = FragmentCoinBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        binding.viewModel = mVM
-        binding.ownerViewModel = mSharedVM
+        binding.viewModel = viewModel
+        binding.ownerViewModel = sharedViewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = DataBindingUtil.bind<FragmentCoinBinding>(view) ?: return
-        val market = mSafeArgs.market
+        val market = safeArgs.market
 
-        mSharedVM.domains.observe(viewLifecycleOwner) { domains ->
+        sharedViewModel.domainList.observe(viewLifecycleOwner) { domains ->
             val coin = domains.find { it.market == market }
             binding.coin = coin
             binding.cbFavorite.tag = coin?.market
 
-            mVM.getFavorite(market)
+            viewModel.getFavorite(market)
         }
     }
 }

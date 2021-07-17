@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private val mSharedVM: OwnerViewModel by viewModels()
+    private val viewModel: OwnerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
     ): View {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        binding.vm = mSharedVM
+        binding.vm = viewModel
         return binding.root
     }
 
@@ -59,7 +59,7 @@ class MainFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                mSharedVM.query.postValue(newText)
+                viewModel.query.postValue(newText)
                 return true
             }
         })

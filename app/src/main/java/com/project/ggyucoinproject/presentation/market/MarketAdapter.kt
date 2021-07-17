@@ -13,11 +13,11 @@ class MarketAdapter(private val listener: SelectCoinListener) :
         fun onCoin(market: String)
     }
 
-    private val mDomains: MutableList<CoinDomain> = mutableListOf()
+    private val domainList: MutableList<CoinDomain> = mutableListOf()
 
     fun addDomains(domains: List<CoinDomain>) {
-        mDomains.clear()
-        mDomains.addAll(domains)
+        domainList.clear()
+        domainList.addAll(domains)
         notifyDataSetChanged()
     }
 
@@ -28,9 +28,9 @@ class MarketAdapter(private val listener: SelectCoinListener) :
     }
 
     override fun onBindViewHolder(holder: MarketViewHolder, position: Int) {
-        val domain = mDomains[position]
+        val domain = domainList[position]
         holder.onBind(domain, listener)
     }
 
-    override fun getItemCount(): Int = mDomains.size
+    override fun getItemCount(): Int = domainList.size
 }

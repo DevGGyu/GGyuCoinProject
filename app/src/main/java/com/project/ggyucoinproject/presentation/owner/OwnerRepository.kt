@@ -21,7 +21,7 @@ class OwnerRepository @Inject constructor(
     private val mainDB: MainDatabase
 ) {
 
-    val domains = MutableLiveData<List<CoinDomain>>()
+    val domainList = MutableLiveData<List<CoinDomain>>()
 
     suspend fun getCoinList() {
         coroutineScope {
@@ -54,7 +54,7 @@ class OwnerRepository @Inject constructor(
                     coins.add(coin)
                 }
 
-                domains.postValue(coins)
+                domainList.postValue(coins)
             }
             ticker.await()
         }

@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
 
-    private val mVM: SplashViewModel by viewModels()
+    private val viewModel: SplashViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +29,7 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mVM.success.observe(viewLifecycleOwner) {
+        viewModel.success.observe(viewLifecycleOwner) {
             findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
         }
     }

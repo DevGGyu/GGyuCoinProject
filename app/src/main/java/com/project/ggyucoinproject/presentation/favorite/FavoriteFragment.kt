@@ -19,8 +19,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class FavoriteFragment : Fragment(), MarketAdapter.SelectCoinListener {
 
-    private val mSharedVM: OwnerViewModel by viewModels()
-    private val mVM: FavoriteViewModel by viewModels()
+    private val sharedViewModel: OwnerViewModel by viewModels()
+    private val viewModel: FavoriteViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,8 +39,8 @@ class FavoriteFragment : Fragment(), MarketAdapter.SelectCoinListener {
         val adapter = MarketAdapter(this)
         binding.rvFavoriteCoinList.adapter = adapter
 
-        mVM.favorites.observe(viewLifecycleOwner) { favoriteMarkets ->
-            mSharedVM.domains.observe(viewLifecycleOwner) { domains ->
+        viewModel.favorites.observe(viewLifecycleOwner) { favoriteMarkets ->
+            sharedViewModel.domainList.observe(viewLifecycleOwner) { domains ->
                 viewLifecycleOwner.lifecycleScope.launch {
                     val favorites = domains.filter {
                         favoriteMarkets.contains(it.market)
@@ -50,10 +50,10 @@ class FavoriteFragment : Fragment(), MarketAdapter.SelectCoinListener {
             }
         }
 
-        mVM.getFavorites()
+        viewModel.getFavorites()
     }
 
-    fun reload() = mVM.getFavorites()
+    fun reload() = viewModel.getFavorites()
 
     override fun onCoin(market: String) {
         val action = MainFragmentDirections.actionMainFragmentToCoinFragment(market)

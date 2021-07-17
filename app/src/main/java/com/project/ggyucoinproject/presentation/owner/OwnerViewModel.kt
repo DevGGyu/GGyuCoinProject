@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class OwnerViewModel @Inject constructor(private val repository: OwnerRepository) : ViewModel() {
 
-    val domains: LiveData<List<CoinDomain>> = Transformations.map(repository.domains) { coins ->
+    val domainList: LiveData<List<CoinDomain>> = Transformations.map(repository.domainList) { coins ->
         val filter = query.value
         if (filter.isNullOrEmpty()) coins
         else coins.filter { it.market.contains(filter.uppercase(Locale.getDefault())) }
@@ -18,7 +18,7 @@ class OwnerViewModel @Inject constructor(private val repository: OwnerRepository
 
     val query = MutableLiveData<String>()
 
-    val bitcoin: LiveData<CoinDomain> = Transformations.map(repository.domains) { coins ->
+    val bitcoin: LiveData<CoinDomain> = Transformations.map(repository.domainList) { coins ->
         coins.find { it.market == "KRW-BTC" }
     }
 

@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MarketFragment : Fragment(), MarketAdapter.SelectCoinListener {
 
-    private val mVM: OwnerViewModel by viewModels()
+    private val viewModel: OwnerViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +42,7 @@ class MarketFragment : Fragment(), MarketAdapter.SelectCoinListener {
             )
         )
 
-        mVM.domains.observe(viewLifecycleOwner) { domains ->
+        viewModel.domainList.observe(viewLifecycleOwner) { domains ->
             adapter.addDomains(domains)
         }
     }
