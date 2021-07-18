@@ -15,7 +15,7 @@ import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MarketFragment : Fragment(), MarketAdapter.SelectCoinListener {
+class MarketFragment : Fragment(), SelectCoinListener {
 
     private val viewModel: OwnerViewModel by viewModels()
 
@@ -33,7 +33,7 @@ class MarketFragment : Fragment(), MarketAdapter.SelectCoinListener {
         super.onViewCreated(view, savedInstanceState)
         val binding = DataBindingUtil.bind<FragmentMarketBinding>(view) ?: return
 
-        val adapter = MarketAdapter(this)
+        val adapter = MarketAdapterV2(this)
         binding.rvCoinList.adapter = adapter
         binding.rvCoinList.addItemDecoration(
             DividerItemDecoration(
@@ -43,7 +43,7 @@ class MarketFragment : Fragment(), MarketAdapter.SelectCoinListener {
         )
 
         viewModel.domainList.observe(viewLifecycleOwner) { domains ->
-            adapter.addDomains(domains)
+            adapter.submitList(domains)
         }
     }
 

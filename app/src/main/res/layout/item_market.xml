@@ -10,7 +10,7 @@
 
         <variable
             name="listener"
-            type="com.project.ggyucoinproject.presentation.market.MarketAdapter.SelectCoinListener" />
+            type="com.project.ggyucoinproject.presentation.market.SelectCoinListener" />
     </data>
 
     <LinearLayout

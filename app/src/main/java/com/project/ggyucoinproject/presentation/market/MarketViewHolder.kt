@@ -8,7 +8,7 @@ import com.project.ggyucoinproject.domain.CoinDomain
 class MarketViewHolder constructor(private val binding: ItemMarketBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(domain: CoinDomain, listener: MarketAdapter.SelectCoinListener) {
+    fun onBind(domain: CoinDomain, listener: SelectCoinListener) {
         binding.setVariable(BR.domain, domain)
         binding.setVariable(BR.listener, listener)
         binding.executePendingBindings()
