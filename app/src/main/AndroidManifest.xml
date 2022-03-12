@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GGyuCoinProject">
 
-        <activity android:name=".presentation.owner.OwnerActivity">
+        <activity
+            android:name=".presentation.owner.OwnerActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

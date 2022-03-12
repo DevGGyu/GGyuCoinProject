@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -20,12 +19,14 @@ class CoinFragment : Fragment() {
 
     private val safeArgs: CoinFragmentArgs by navArgs()
 
+    private lateinit var binding: FragmentCoinBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentCoinBinding.inflate(inflater)
+        binding = FragmentCoinBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.ownerViewModel = sharedViewModel
@@ -34,7 +35,6 @@ class CoinFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = DataBindingUtil.bind<FragmentCoinBinding>(view) ?: return
         val market = safeArgs.market
 
         sharedViewModel.domainList.observe(viewLifecycleOwner) { domains ->

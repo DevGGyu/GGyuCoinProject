@@ -3,7 +3,6 @@ package com.project.ggyucoinproject.presentation.main
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
@@ -17,6 +16,8 @@ class MainFragment : Fragment() {
 
     private val viewModel: OwnerViewModel by viewModels()
 
+    private lateinit var binding: FragmentMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -27,7 +28,7 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentMainBinding.inflate(inflater)
+        binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.vm = viewModel
         return binding.root
@@ -35,7 +36,6 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = DataBindingUtil.bind<FragmentMainBinding>(view) ?: return
 
         binding.viewPager.adapter = MainAdapter(requireActivity())
 
