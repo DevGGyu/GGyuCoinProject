@@ -1,7 +1,7 @@
 package com.project.ggyucoinproject.presentation.owner
 
 import androidx.lifecycle.MutableLiveData
-import com.project.ggyucoinproject.BuildConfig
+import androidx.viewbinding.BuildConfig
 import com.project.ggyucoinproject.data.TickerMarketData
 import com.project.ggyucoinproject.domain.CoinDomain
 import com.project.ggyucoinproject.entity.MarketEntity
@@ -32,7 +32,7 @@ class OwnerRepository @Inject constructor(
                 val ticker = async { getTickerMarket(marketEntities) }
                 ticker.await()
                 val timeMillis = if (BuildConfig.DEBUG) 1000L else 10000L
-                delay(timeMillis = timeMillis)
+                delay(timeMillis = 30000L)
             }
         }
     }
@@ -44,7 +44,7 @@ class OwnerRepository @Inject constructor(
             val ticker = async {
                 val coins = mutableListOf<CoinDomain>()
 
-                val markets = entities.map(MarketEntity::market).toList()
+                val markets = entities.map(MarketEntity::market).joinToString()
 
                 val tickerMarketDomains = service.getTickerMarket(markets).body()
                     ?.map(TickerMarketData::toDomainModel) ?: return@async

@@ -13,6 +13,6 @@ interface MarketService {
 
     @GET("ticker")
     suspend fun getTickerMarket(
-        @Query("markets") markets: List<String>
+        @Query("markets") markets: String
     ): Response<List<TickerMarketData>>
 }

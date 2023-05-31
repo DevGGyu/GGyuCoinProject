@@ -1,5 +1,6 @@
 package com.project.ggyucoinproject.presentation.coin
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.project.ggyucoinproject.entity.FavoriteEntity
 import com.project.ggyucoinproject.etc.db.MainDatabase
@@ -20,12 +21,16 @@ class CoinRepository @Inject constructor(private val db: MainDatabase) {
     }
 
     suspend fun insertFavorite(favorite: FavoriteEntity) {
-        println("insert : ${favorite.market}")
+        Log.i(TAG, "insert : ${favorite.market}")
         db.favoriteDao().insert(favorite)
     }
 
     suspend fun deleteFavorite(favorite: FavoriteEntity) {
-        println("delete : ${favorite.market}")
+        Log.i(TAG, "delete : ${favorite.market}")
         db.favoriteDao().delete(favorite)
+    }
+
+    companion object {
+        private const val TAG = "CoinRepository"
     }
 }
