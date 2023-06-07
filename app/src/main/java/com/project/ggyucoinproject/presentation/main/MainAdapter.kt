@@ -1,4 +1,4 @@
-package com.project.ggyucoinproject.presentation
+package com.project.ggyucoinproject.presentation.main
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -8,7 +8,7 @@ import com.project.ggyucoinproject.presentation.favorite.FavoriteFragment
 import com.project.ggyucoinproject.presentation.market.MarketFragment
 import com.project.ggyucoinproject.presentation.symbol.SymbolFragment
 
-class MainAdapter(private val fa: FragmentActivity) : FragmentStateAdapter(fa) {
+class MainAdapter constructor(private val fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
     private val arrScreen = arrayOf(MarketFragment(), FavoriteFragment(), SymbolFragment())
 

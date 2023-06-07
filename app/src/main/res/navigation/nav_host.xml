@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.project.ggyucoinproject.presentation.MainFragment"
+        android:name="com.project.ggyucoinproject.presentation.main.MainFragment"
         android:label="Main"
         tools:layout="@layout/fragment_main">
         <action

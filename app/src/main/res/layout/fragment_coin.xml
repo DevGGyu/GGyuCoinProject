@@ -11,7 +11,7 @@
 
         <variable
             name="ownerViewModel"
-            type="com.project.ggyucoinproject.presentation.owner.OwnerViewModel" />
+            type="com.project.ggyucoinproject.presentation.MainViewModel" />
 
         <variable
             name="viewModel"

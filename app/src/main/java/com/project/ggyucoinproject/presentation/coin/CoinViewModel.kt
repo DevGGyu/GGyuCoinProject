@@ -6,30 +6,31 @@ import androidx.lifecycle.viewModelScope
 import com.project.ggyucoinproject.domain.usecase.CoinUseCase
 import com.project.ggyucoinproject.data.entity.FavoriteEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CoinViewModel @Inject constructor(private val repository: CoinUseCase) : ViewModel() {
+class CoinViewModel @Inject constructor(private val useCase: CoinUseCase) : ViewModel() {
 
-    val favorite = repository.favorite
+    val favorite = useCase.favorite
 
     val favoriteChanged = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
         val market = buttonView.tag as String
         val entity = FavoriteEntity(market = market)
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             if (isChecked) {
-                repository.insertFavorite(entity)
+                useCase.insertFavorite(entity)
             } else {
-                repository.deleteFavorite(entity)
+                useCase.deleteFavorite(entity)
             }
         }
         favorite.postValue(isChecked)
     }
 
     fun getFavorite(market: String?) {
-        viewModelScope.launch {
-            repository.getFavorite(market)
+        viewModelScope.launch(Dispatchers.IO) {
+            useCase.getFavorite(market)
         }
     }
 }

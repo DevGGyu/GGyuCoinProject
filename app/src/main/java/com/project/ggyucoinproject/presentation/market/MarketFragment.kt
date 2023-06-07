@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.project.ggyucoinproject.databinding.FragmentMarketBinding
-import com.project.ggyucoinproject.presentation.MainFragmentDirections
-import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
+import com.project.ggyucoinproject.presentation.MainViewModel
+import com.project.ggyucoinproject.presentation.main.MainFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MarketFragment : Fragment(), SelectCoinListener {
 
-    private val viewModel: OwnerViewModel by viewModels()
+    private val viewModel: MainViewModel by activityViewModels()
 
     private lateinit var binding: FragmentMarketBinding
 
@@ -33,7 +33,7 @@ class MarketFragment : Fragment(), SelectCoinListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = MarketAdapterV2(this)
+        val adapter = MarketAdapter(this)
         binding.rvCoinList.adapter = adapter
         binding.rvCoinList.addItemDecoration(
             DividerItemDecoration(

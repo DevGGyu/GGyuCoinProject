@@ -1,21 +1,20 @@
-package com.project.ggyucoinproject.presentation
+package com.project.ggyucoinproject.presentation.main
 
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.project.ggyucoinproject.R
 import com.project.ggyucoinproject.databinding.FragmentMainBinding
-import com.project.ggyucoinproject.presentation.MainAdapter
-import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
+import com.project.ggyucoinproject.presentation.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private val viewModel: OwnerViewModel by viewModels()
+    private val viewModel: MainViewModel by activityViewModels()
 
     private lateinit var binding: FragmentMainBinding
 

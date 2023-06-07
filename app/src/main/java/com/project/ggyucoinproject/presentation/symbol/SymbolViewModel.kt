@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.project.ggyucoinproject.domain.usecase.SymbolUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -13,7 +14,7 @@ class SymbolViewModel @Inject constructor(private val repository: SymbolUseCase)
     val marketAll = repository.marketAll
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.getMarketAll()
         }
     }

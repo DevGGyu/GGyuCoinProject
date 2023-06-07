@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.project.ggyucoinproject.databinding.ItemMarketBinding
 import com.project.ggyucoinproject.domain.model.CoinDomain
 
-class MarketAdapterV2(private val listener: SelectCoinListener) :
+class MarketAdapter constructor(private val listener: SelectCoinListener) :
     ListAdapter<CoinDomain, MarketViewHolder>(MarketDiffUtilCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MarketViewHolder(
