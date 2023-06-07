@@ -1,4 +1,4 @@
-package com.project.ggyucoinproject.presentation.main
+package com.project.ggyucoinproject.presentation
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

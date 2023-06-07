@@ -1,14 +1,12 @@
-package com.project.ggyucoinproject.presentation.symbol
+package com.project.ggyucoinproject.domain.usecase
 
 import androidx.lifecycle.MutableLiveData
-import com.project.ggyucoinproject.data.MarketData
-import com.project.ggyucoinproject.domain.MarketDomain
-import com.project.ggyucoinproject.etc.api.MarketService
+import com.project.ggyucoinproject.common.MarketService
+import com.project.ggyucoinproject.data.model.MarketData
+import com.project.ggyucoinproject.domain.model.MarketDomain
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class SymbolRepository @Inject constructor(private val service: MarketService) {
+class SymbolUseCase @Inject constructor(private val service: MarketService) {
 
     val marketAll = MutableLiveData<List<MarketDomain>>()
 

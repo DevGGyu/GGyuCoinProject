@@ -1,22 +1,19 @@
-package com.project.ggyucoinproject.presentation.owner
+package com.project.ggyucoinproject.domain.usecase
 
 import androidx.lifecycle.MutableLiveData
 import androidx.viewbinding.BuildConfig
-import com.project.ggyucoinproject.data.TickerMarketData
-import com.project.ggyucoinproject.domain.CoinDomain
-import com.project.ggyucoinproject.entity.MarketEntity
-import com.project.ggyucoinproject.etc.api.MarketService
-import com.project.ggyucoinproject.etc.db.MainDatabase
+import com.project.ggyucoinproject.common.MainDatabase
+import com.project.ggyucoinproject.common.MarketService
+import com.project.ggyucoinproject.data.entity.MarketEntity
+import com.project.ggyucoinproject.data.model.TickerMarketData
+import com.project.ggyucoinproject.domain.model.CoinDomain
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class OwnerRepository @Inject constructor(
+class OwnerUseCase @Inject constructor(
     private val service: MarketService,
     private val mainDB: MainDatabase
 ) {

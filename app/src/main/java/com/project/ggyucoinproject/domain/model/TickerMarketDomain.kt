@@ -1,4 +1,4 @@
-package com.project.ggyucoinproject.domain
+package com.project.ggyucoinproject.domain.model
 
 data class TickerMarketDomain(
     val market: String,

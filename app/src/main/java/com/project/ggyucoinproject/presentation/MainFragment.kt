@@ -1,4 +1,4 @@
-package com.project.ggyucoinproject.presentation.main
+package com.project.ggyucoinproject.presentation
 
 import android.os.Bundle
 import android.view.*
@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.project.ggyucoinproject.R
 import com.project.ggyucoinproject.databinding.FragmentMainBinding
+import com.project.ggyucoinproject.presentation.MainAdapter
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

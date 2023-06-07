@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.project.ggyucoinproject.databinding.ItemSymbolBinding
-import com.project.ggyucoinproject.domain.MarketDomain
+import com.project.ggyucoinproject.domain.model.MarketDomain
 
 class SymbolAdapter : RecyclerView.Adapter<SymbolViewHolder>() {
 

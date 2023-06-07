@@ -3,13 +3,14 @@ package com.project.ggyucoinproject.presentation.coin
 import android.widget.CompoundButton
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.project.ggyucoinproject.entity.FavoriteEntity
+import com.project.ggyucoinproject.domain.usecase.CoinUseCase
+import com.project.ggyucoinproject.data.entity.FavoriteEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CoinViewModel @Inject constructor(private val repository: CoinRepository) : ViewModel() {
+class CoinViewModel @Inject constructor(private val repository: CoinUseCase) : ViewModel() {
 
     val favorite = repository.favorite
 

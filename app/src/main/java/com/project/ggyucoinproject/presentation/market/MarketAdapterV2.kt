@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.project.ggyucoinproject.databinding.ItemMarketBinding
-import com.project.ggyucoinproject.domain.CoinDomain
+import com.project.ggyucoinproject.domain.model.CoinDomain
 
 class MarketAdapterV2(private val listener: SelectCoinListener) :
     ListAdapter<CoinDomain, MarketViewHolder>(MarketDiffUtilCallback) {

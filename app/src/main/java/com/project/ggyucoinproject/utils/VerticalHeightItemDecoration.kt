@@ -1,4 +1,4 @@
-package com.project.ggyucoinproject.etc
+package com.project.ggyucoinproject.utils
 
 import android.graphics.Rect
 import android.view.View

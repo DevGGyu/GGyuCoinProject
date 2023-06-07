@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.project.ggyucoinproject.databinding.FragmentMarketBinding
-import com.project.ggyucoinproject.presentation.main.MainFragmentDirections
+import com.project.ggyucoinproject.presentation.MainFragmentDirections
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

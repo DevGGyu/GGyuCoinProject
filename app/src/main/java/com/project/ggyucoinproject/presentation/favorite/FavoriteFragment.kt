@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.project.ggyucoinproject.databinding.FragmentFavoriteBinding
-import com.project.ggyucoinproject.presentation.main.MainFragmentDirections
+import com.project.ggyucoinproject.presentation.MainFragmentDirections
 import com.project.ggyucoinproject.presentation.market.MarketAdapterV2
 import com.project.ggyucoinproject.presentation.market.SelectCoinListener
 import com.project.ggyucoinproject.presentation.owner.OwnerViewModel

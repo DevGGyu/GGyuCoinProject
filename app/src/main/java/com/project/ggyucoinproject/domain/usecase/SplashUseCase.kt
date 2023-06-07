@@ -1,16 +1,14 @@
-package com.project.ggyucoinproject.presentation.splash
+package com.project.ggyucoinproject.domain.usecase
 
 import androidx.lifecycle.MutableLiveData
-import com.project.ggyucoinproject.data.MarketData
-import com.project.ggyucoinproject.etc.api.MarketService
-import com.project.ggyucoinproject.etc.db.MainDatabase
+import com.project.ggyucoinproject.common.MainDatabase
+import com.project.ggyucoinproject.common.MarketService
+import com.project.ggyucoinproject.data.model.MarketData
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class SplashRepository @Inject constructor(
+class SplashUseCase @Inject constructor(
     private val service: MarketService,
     private val mainDB: MainDatabase
 ) {

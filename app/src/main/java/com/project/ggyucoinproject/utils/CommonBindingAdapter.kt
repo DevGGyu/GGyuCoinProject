@@ -1,4 +1,4 @@
-package com.project.ggyucoinproject.etc
+package com.project.ggyucoinproject.utils
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

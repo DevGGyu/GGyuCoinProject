@@ -1,10 +1,8 @@
-package com.project.ggyucoinproject.di
+package com.project.ggyucoinproject.common
 
 import android.content.Context
 import androidx.room.Room
 import com.project.ggyucoinproject.BuildConfig
-import com.project.ggyucoinproject.etc.api.MarketService
-import com.project.ggyucoinproject.etc.db.MainDatabase
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

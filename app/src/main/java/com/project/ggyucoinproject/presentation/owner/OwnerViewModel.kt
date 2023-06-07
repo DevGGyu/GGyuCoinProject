@@ -1,14 +1,15 @@
 package com.project.ggyucoinproject.presentation.owner
 
 import androidx.lifecycle.*
-import com.project.ggyucoinproject.domain.CoinDomain
+import com.project.ggyucoinproject.domain.model.CoinDomain
+import com.project.ggyucoinproject.domain.usecase.OwnerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class OwnerViewModel @Inject constructor(private val repository: OwnerRepository) : ViewModel() {
+class OwnerViewModel @Inject constructor(private val repository: OwnerUseCase) : ViewModel() {
 
     val domainList: LiveData<List<CoinDomain>> = Transformations.map(repository.domainList) { coins ->
         val filter = query.value

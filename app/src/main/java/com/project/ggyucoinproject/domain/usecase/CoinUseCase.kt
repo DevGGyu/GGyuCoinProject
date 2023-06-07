@@ -1,15 +1,13 @@
-package com.project.ggyucoinproject.presentation.coin
+package com.project.ggyucoinproject.domain.usecase
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.project.ggyucoinproject.entity.FavoriteEntity
-import com.project.ggyucoinproject.etc.db.MainDatabase
+import com.project.ggyucoinproject.data.entity.FavoriteEntity
+import com.project.ggyucoinproject.common.MainDatabase
 import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class CoinRepository @Inject constructor(private val db: MainDatabase) {
+class CoinUseCase @Inject constructor(private val db: MainDatabase) {
 
     val favorite = MutableLiveData<Boolean>()
 

@@ -1,7 +1,7 @@
-package com.project.ggyucoinproject.etc.db
+package com.project.ggyucoinproject.data.dao
 
 import androidx.room.*
-import com.project.ggyucoinproject.entity.FavoriteEntity
+import com.project.ggyucoinproject.data.entity.FavoriteEntity
 
 @Dao
 interface FavoriteDao {
