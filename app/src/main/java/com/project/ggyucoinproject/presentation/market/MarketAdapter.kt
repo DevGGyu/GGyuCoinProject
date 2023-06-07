@@ -2,32 +2,26 @@ package com.project.ggyucoinproject.presentation.market
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.project.ggyucoinproject.databinding.ItemMarketBinding
-import com.project.ggyucoinproject.domain.CoinDomain
+import com.project.ggyucoinproject.domain.model.CoinDomain
 
-@Deprecated(message = "Deprecated")
-class MarketAdapter(private val listener: SelectCoinListener) :
-    RecyclerView.Adapter<MarketViewHolder>() {
+class MarketAdapter constructor(private val listener: SelectCoinListener) :
+    ListAdapter<CoinDomain, MarketViewHolder>(MarketDiffUtilCallback) {
 
-    private val domainList: MutableList<CoinDomain> = mutableListOf()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MarketViewHolder(
+        ItemMarketBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    )
 
-    fun addDomains(domains: List<CoinDomain>) {
-        domainList.clear()
-        domainList.addAll(domains)
-        notifyDataSetChanged()
+    override fun onBindViewHolder(holder: MarketViewHolder, position: Int) =
+        holder.onBind(getItem(position), listener)
+
+    object MarketDiffUtilCallback : DiffUtil.ItemCallback<CoinDomain>() {
+        override fun areItemsTheSame(oldItem: CoinDomain, newItem: CoinDomain): Boolean =
+            oldItem.market == newItem.market
+
+        override fun areContentsTheSame(oldItem: CoinDomain, newItem: CoinDomain): Boolean =
+            oldItem.tradePrice == newItem.tradePrice
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarketViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemMarketBinding.inflate(inflater, parent, false)
-        return MarketViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: MarketViewHolder, position: Int) {
-        val domain = domainList[position]
-        holder.onBind(domain, listener)
-    }
-
-    override fun getItemCount(): Int = domainList.size
 }

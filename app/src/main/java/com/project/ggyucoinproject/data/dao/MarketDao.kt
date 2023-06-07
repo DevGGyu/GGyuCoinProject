@@ -1,10 +1,10 @@
-package com.project.ggyucoinproject.etc.db
+package com.project.ggyucoinproject.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.project.ggyucoinproject.entity.MarketEntity
+import com.project.ggyucoinproject.data.entity.MarketEntity
 
 @Dao
 interface MarketDao {

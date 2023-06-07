@@ -1,4 +1,4 @@
-package com.project.ggyucoinproject.entity
+package com.project.ggyucoinproject.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

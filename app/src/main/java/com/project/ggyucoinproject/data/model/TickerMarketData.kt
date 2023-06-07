@@ -1,6 +1,6 @@
-package com.project.ggyucoinproject.data
+package com.project.ggyucoinproject.data.model
 
-import com.project.ggyucoinproject.domain.TickerMarketDomain
+import com.project.ggyucoinproject.domain.model.TickerMarketDomain
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.text.NumberFormat

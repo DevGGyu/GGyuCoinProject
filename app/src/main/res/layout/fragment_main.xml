@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.project.ggyucoinproject.presentation.owner.OwnerViewModel" />
+            type="com.project.ggyucoinproject.presentation.MainViewModel" />
     </data>
 
     <LinearLayout

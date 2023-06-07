@@ -1,12 +1,13 @@
-package com.project.ggyucoinproject.di
+package com.project.ggyucoinproject.common
 
 import android.content.Context
 import androidx.room.Room
 import com.project.ggyucoinproject.BuildConfig
-import com.project.ggyucoinproject.etc.api.MarketService
-import com.project.ggyucoinproject.etc.db.MainDatabase
+import com.project.ggyucoinproject.data.repository.MainRepositoryImpl
+import com.project.ggyucoinproject.domain.repository.MainRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -60,4 +61,12 @@ object NetworkModule {
             .client(client)
             .build().create(MarketService::class.java)
     }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule {
+
+    @Binds
+    abstract fun bindMainRepository(repositoryImpl: MainRepositoryImpl): MainRepository
 }

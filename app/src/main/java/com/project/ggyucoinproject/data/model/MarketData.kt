@@ -1,7 +1,7 @@
-package com.project.ggyucoinproject.data
+package com.project.ggyucoinproject.data.model
 
-import com.project.ggyucoinproject.domain.MarketDomain
-import com.project.ggyucoinproject.entity.MarketEntity
+import com.project.ggyucoinproject.domain.model.MarketDomain
+import com.project.ggyucoinproject.data.entity.MarketEntity
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

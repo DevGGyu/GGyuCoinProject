@@ -22,9 +22,7 @@ class SplashFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentSplashBinding.inflate(inflater)
-        binding.lifecycleOwner = this
-        return binding.root
+        return FragmentSplashBinding.inflate(inflater).root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
