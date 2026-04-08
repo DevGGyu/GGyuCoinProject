@@ -1,7 +1,7 @@
 package com.project.ggyucoinproject.domain.usecase
 
 import androidx.lifecycle.MutableLiveData
-import androidx.viewbinding.BuildConfig
+import com.project.ggyucoinproject.BuildConfig
 import com.project.ggyucoinproject.common.MainDatabase
 import com.project.ggyucoinproject.data.entity.MarketEntity
 import com.project.ggyucoinproject.data.model.MarketData

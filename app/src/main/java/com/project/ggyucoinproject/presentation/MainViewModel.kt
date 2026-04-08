@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(private val useCase: OwnerUseCase) : ViewModel() {
 
-    val domainList: LiveData<List<CoinDomain>> = Transformations.map(useCase.domainList) { coins ->
+    val domainList: LiveData<List<CoinDomain>> = useCase.domainList.map { coins ->
         val filter = query.value
         if (filter.isNullOrEmpty()) coins
         else coins.filter { it.market.contains(filter.uppercase(Locale.getDefault())) }
@@ -20,7 +20,7 @@ class MainViewModel @Inject constructor(private val useCase: OwnerUseCase) : Vie
 
     val query = MutableLiveData<String>()
 
-    val bitcoin: LiveData<CoinDomain> = Transformations.map(useCase.domainList) { coins ->
+    val bitcoin: LiveData<CoinDomain?> = useCase.domainList.map { coins ->
         coins.find { it.market == "KRW-BTC" }
     }
 
