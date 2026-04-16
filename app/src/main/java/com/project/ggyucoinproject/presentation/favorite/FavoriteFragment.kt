@@ -44,8 +44,9 @@ class FavoriteFragment : Fragment(), SelectCoinListener {
         viewModel.favorites.observe(viewLifecycleOwner) { favoriteMarkets ->
             sharedViewModel.domainList.observe(viewLifecycleOwner) { domains ->
                 viewLifecycleOwner.lifecycleScope.launch {
+                    val favoriteSet = favoriteMarkets.toSet()
                     val favorites = domains.filter {
-                        favoriteMarkets.contains(it.market)
+                        favoriteSet.contains(it.market)
                     }.toList()
                     adapter.submitList(favorites)
                 }
