@@ -4,7 +4,7 @@ import com.project.ggyucoinproject.domain.model.TickerMarketDomain
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.text.NumberFormat
-import java.util.*
+import java.util.Locale
 
 @JsonClass(generateAdapter = true)
 data class TickerMarketData(
