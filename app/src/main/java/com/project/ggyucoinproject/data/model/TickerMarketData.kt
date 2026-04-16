@@ -45,9 +45,15 @@ data class TickerMarketData(
     }
 
     private fun String.toComma(): String {
-        val fmt = NumberFormat.getNumberInstance(Locale.getDefault())
+        val fmt = numberFormat.get()!!
         val sp = this.split(".")
         val format = fmt.format(Integer.parseInt(sp[0]))
         return if (!this.contains(".")) format else this.replaceBefore(".", format)
+    }
+
+    companion object {
+        private val numberFormat = ThreadLocal.withInitial {
+            NumberFormat.getNumberInstance(Locale.getDefault())
+        }
     }
 }
